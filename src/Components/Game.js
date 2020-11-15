@@ -8,11 +8,11 @@ const Game = () => {
     const [xIsNext, setXIsNext] = useState(true);
     const winner = calculateWinner(history[stepNum]);
     const xo = xIsNext ? "X" : "O";
+    const historyPoint = history.slice(0, stepNum + 1);
+    const current = historyPoint[stepNum];
+    const squares = [...current];
 
     const handleClick = (i) => {
-        const historyPoint = history.slice(0, stepNum + 1);
-        const current = historyPoint[stepNum];
-        const squares = [...current];
         //return if won or occupied
         if (winner || squares[i]) return;
         // select square
@@ -36,10 +36,11 @@ const Game = () => {
         )
     })
 
-    const style = winner ? `winner` : "";
-    let outputMessage = winner ? "Winner: " + winner +" Click 'Go to Start' to start again" : "Next Player: " + xo;
-    if (isFull) {
-        outputMessage = "Tie! - Press 'Go to Start' to start again'"
+    let style = winner ? `winner` : "";
+    let outputMessage = winner ? "Winner: " + winner +" - Click 'Go to Start' to start again" : "Next Player: " + xo;
+    if (isFull(squares)) {
+        outputMessage = "Tie!   -   Press 'Go to Start' to start again";
+        style = "tie";
     }
     return (
         <>

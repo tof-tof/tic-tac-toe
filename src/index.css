@@ -72,4 +72,9 @@ li {
 
 .winner{
   color: green;
+} 
+
+
+.tie{
+  color:purple;
 }
