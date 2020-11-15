@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { calculateWinner } from '../Helper';
+import { calculateWinner, isFull } from '../Helper';
 import Board from './Board';
 
 const Game = () => {
@@ -37,6 +37,10 @@ const Game = () => {
     })
 
     const style = winner ? `winner` : "";
+    let outputMessage = winner ? "Winner: " + winner +" Click 'Go to Start' to start again" : "Next Player: " + xo;
+    if (isFull) {
+        outputMessage = "Tie! - Press 'Go to Start' to start again'"
+    }
     return (
         <>
             <h1>Tic Tac Toe</h1>
@@ -46,7 +50,7 @@ const Game = () => {
                     <h3>History</h3>
                     {renderMoves()}
                 </div>
-                <h3 className={style}>{winner ? "Winner: " + winner : "Next Player: " + xo}</h3>
+                <h3 className={style}>{outputMessage}</h3>
             </div>
         </>
     )

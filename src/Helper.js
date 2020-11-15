@@ -16,4 +16,13 @@ export function calculateWinner(squares) {
       }
     }
     return null;
-  }
+}
+  
+export function isFull(squares) {
+    let res = true;
+    for (let i = 0; i < squares.length; i++){
+        if (!squares[i])
+            res = false
+    }
+    return res
+}
